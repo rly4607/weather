@@ -12,16 +12,19 @@ $(function() {
     var CurTemp = "<p>Current Temperature: " + parseInt(weather.currently.temperature) + " &#8457 / " + parseInt((weather.currently.temperature -32)*5/9) + " &#8451</p>";
     var CurHum = "<p>Current Humidity: " + weather.currently.humidity + " %</p>";
     var datetemp = new Date(weather.daily.data[1].time*1000);
-    var date1 = datetemp.getMonth()+1;
-    var date2 = datetemp.getDate();
-    var displayDate = "<p>Date: " + date1 + "-" + date2 + "    " + weather.daily.data[1].summary + "</p>"
+
+    var Date1 = {month:datetemp.getMonth()+1,day:datetemp.getDate(),summary:weather.daily.data[1].summary};
+    var dispDate1 = "<p>" + Date1.month + "-" + Date1.day + "</p>";
+    var dispDate1sum = "<p>" + Date1.summary + "</p>";
+    //var ryan={location: {state:"Illinois", city:"Chicago"},name:"Ryan",vehicle:"bicycle",favNumbers: [12,3,24,4,0]}
     // End of your code. No, really. Don't change anything below this, or above line 11.
 
     // Takes the contents of the "markup" variable (which should contain HTML)
     // and write it out to the page.
     $('.weather-temp').html(CurTemp);
     $('.weather-hum').html(CurHum);
-    $('.date-one').html(displayDate);
+    $('.date-one').html(dispDate1);
+    $('.summary-one').html(dispDate1sum);
 
   }
 
