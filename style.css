@@ -1,0 +1,19 @@
+.container {
+  background-color: white;
+}
+
+.jumbotron {
+  color: white;
+  background-color: black;
+}
+
+.container .jumbotron {
+  border-radius: 10px;
+}
+
+.btn-primary {
+  font-size: 21px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 200;
+  background-color: #0e2f7d;
+}
