@@ -10,7 +10,7 @@ $(function() {
 
     // Put your code here. Don't change any other code in this file. You will be sad.
     var CurTemp = "<p>Currently " + parseInt(weather.currently.temperature) + " &#8457 / " + parseInt((weather.currently.temperature -32)*5/9) + " &#8451 </p>";
-    var CurHum = "<p>" + weather.currently.summary + " with "+ weather.currently.humidity + " % Humidity</p>";
+    var CurHum = "<p>" + weather.currently.summary + " with "+ (weather.currently.humidity)*100 + " % Humidity</p>";
     var datetemp1 = new Date(weather.daily.data[1].time*1000);
     var datetemp2 = new Date(weather.daily.data[2].time*1000);
     var datetemp3 = new Date(weather.daily.data[3].time*1000);
