@@ -58,7 +58,9 @@ $(function() {
   }
 
   // The "glue" that makes it all work. Don't really worry about this for now.
-  $('a.get-the-weather').on('click', function(event) {
+  $(window).load(function(event){
+//  $('a.get-the-weather').on('click', function(event) {
+    //alert("pageload event fired!");
     event.preventDefault();
     $.ajax({
       type: 'GET',
