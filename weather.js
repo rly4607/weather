@@ -14,6 +14,7 @@ $(function() {
     var datetemp1 = new Date(weather.daily.data[1].time*1000);
     var datetemp2 = new Date(weather.daily.data[2].time*1000);
     var datetemp3 = new Date(weather.daily.data[3].time*1000);
+    var datetemp4 = new Date(weather.daily.data[4].time*1000);
 
     var Date1 = {month:datetemp1.getMonth()+1,day:datetemp1.getDate(),summary:weather.daily.data[1].summary,highTemp:weather.daily.data[1].temperatureMax,lowTemp:weather.daily.data[1].temperatureMin};
     var dispDate1 = "<p>" + Date1.month + "-" + Date1.day + "</p>";
@@ -32,6 +33,12 @@ $(function() {
     var dispDate3sum = "<p>" + Date3.summary + "</p>";
     var dispDate3hightemp = "<p>" + parseInt(Date3.highTemp) + "</p>";
     var dispDate3lowtemp = "<p>" + parseInt(Date3.lowTemp) + "</p>";
+
+    var Date4 = {month:datetemp4.getMonth()+1,day:datetemp4.getDate(),summary:weather.daily.data[4].summary,highTemp:weather.daily.data[4].temperatureMax,lowTemp:weather.daily.data[4].temperatureMin};
+    var dispDate4 = "<p>" + Date4.month + "-" + Date4.day + "</p>";
+    var dispDate4sum = "<p>" + Date4.summary + "</p>";
+    var dispDate4hightemp = "<p>" + parseInt(Date4.highTemp) + "</p>";
+    var dispDate4lowtemp = "<p>" + parseInt(Date4.lowTemp) + "</p>";
     //var ryan={location: {state:"Illinois", city:"Chicago"},name:"Ryan",vehicle:"bicycle",favNumbers: [12,3,24,4,0]}
     // End of your code. No, really. Don't change anything below this, or above line 11.
 
@@ -55,6 +62,10 @@ $(function() {
     $('.hightemp-three').html(dispDate3hightemp);
     $('.lowtemp-three').html(dispDate3lowtemp);
 
+    $('.date-four').html(dispDate4);
+    $('.summary-four').html(dispDate4sum);
+    $('.hightemp-four').html(dispDate4hightemp);
+    $('.lowtemp-four').html(dispDate4lowtemp);
   }
 
   // The "glue" that makes it all work. Don't really worry about this for now.
