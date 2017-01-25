@@ -23,7 +23,7 @@ $(function() {
 	  }
 
     // Put your code here. Don't change any other code in this file. You will be sad.
-    var CurTemp = "<p>Currently " + parseInt(weather.currently.temperature) + " &#8457 / " + parseInt((weather.currently.temperature -32)*5/9) + " &#8451 </p>";
+    var CurTemp = "<p>Currently " + Math.round(weather.currently.temperature) + " &#8457 / " + Math.round((weather.currently.temperature -32)*5/9) + " &#8451</p>";// + city + ", " + state + "</p>";
     var CurHum = "<p>" + weather.currently.summary + " with "+ (weather.currently.humidity)*100 + " % Humidity</p>";
 
     var dispDate1 = "<p>" + days[0].month + "-" + days[0].day + "</p>";
@@ -79,12 +79,26 @@ $(function() {
 //  $('a.get-the-weather').on('click', function(event) {
     //alert("pageload event fired!");
   event.preventDefault();
-  $.ajax({
-    type: 'GET',
-    url: 'https://api.forecast.io/forecast/6dbe98374cc5b8f9ea63d5ec73de9c04/41.946428,-87.707409?callback=?',
-    dataType: 'jsonp',
-    contentType: "application/json",
-    success: handleWeatherResponse
-  });
+
+
+  $.getJSON('https://freegeoip.net/json/')
+     .done (function(location)
+     {
+       var userLat = location.latitude;
+       var userLong = location.longitude;
+       var city = location.city;
+       var state = location.region_code;
+       console.log(city,state);
+       var newurl = "https://api.forecast.io/forecast/6dbe98374cc5b8f9ea63d5ec73de9c04/" + userLat + "," + userLong + "?callback=?";
+
+       $.ajax({
+         type: 'GET',
+         url: newurl,//'https://api.forecast.io/forecast/6dbe98374cc5b8f9ea63d5ec73de9c04/41.946428,-87.707409?callback=?',
+         dataType: 'jsonp',
+         contentType: "application/json",
+         success: handleWeatherResponse
+       });
+
+     });
 //  });
 });
