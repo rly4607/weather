@@ -93,7 +93,7 @@ $(function() {
 
        $.ajax({
          type: 'GET',
-         url: newurl,//'https://api.forecast.io/forecast/6dbe98374cc5b8f9ea63d5ec73de9c04/41.946428,-87.707409?callback=?',
+         url: newurl,
          dataType: 'jsonp',
          contentType: "application/json",
          success: handleWeatherResponse
