@@ -1,4 +1,6 @@
 $(function() {
+
+
   var handleWeatherResponse = function(weather) {
     // "weather" is an object that holds all the information you need. Here, we
     // write it out to the console for easy viewing.
@@ -6,39 +8,43 @@ $(function() {
 
     // We also set a window-level variable so we can use it in the console,
     // by typing "weather"
+
     window.weather = weather;
+
+    // Let's get that data!
+
+    var days = [];
+
+    for (i=0; i<5; i++) {
+  //    console.log(Math.round(weather.daily.data[i+1].temperatureMax));
+      var datetemp = new Date(weather.daily.data[i+1].time*1000);
+      days[i] = {month:datetemp.getMonth()+1,day:datetemp.getDate(),summary:weather.daily.data[i+1].summary,highTemp:Math.round(weather.daily.data[i+1].temperatureMax),lowTemp:Math.round(weather.daily.data[i+1].temperatureMin)};
+//      console.log(days[i]);
+	  }
 
     // Put your code here. Don't change any other code in this file. You will be sad.
     var CurTemp = "<p>Currently " + parseInt(weather.currently.temperature) + " &#8457 / " + parseInt((weather.currently.temperature -32)*5/9) + " &#8451 </p>";
     var CurHum = "<p>" + weather.currently.summary + " with "+ (weather.currently.humidity)*100 + " % Humidity</p>";
-    var datetemp1 = new Date(weather.daily.data[1].time*1000);
-    var datetemp2 = new Date(weather.daily.data[2].time*1000);
-    var datetemp3 = new Date(weather.daily.data[3].time*1000);
-    var datetemp4 = new Date(weather.daily.data[4].time*1000);
 
-    var Date1 = {month:datetemp1.getMonth()+1,day:datetemp1.getDate(),summary:weather.daily.data[1].summary,highTemp:weather.daily.data[1].temperatureMax,lowTemp:weather.daily.data[1].temperatureMin};
-    var dispDate1 = "<p>" + Date1.month + "-" + Date1.day + "</p>";
-    var dispDate1sum = "<p>" + Date1.summary + "</p>";
-    var dispDate1hightemp = "<p>" + parseInt(Date1.highTemp) + "</p>";
-    var dispDate1lowtemp = "<p>" + parseInt(Date1.lowTemp) + "</p>";
+    var dispDate1 = "<p>" + days[0].month + "-" + days[0].day + "</p>";
+    var dispDate1sum = "<p>" + days[0].summary + "</p>";
+    var dispDate1hightemp = "<p>" + days[0].highTemp + "</p>";
+    var dispDate1lowtemp = "<p>" + days[0].lowTemp + "</p>";
 
-    var Date2 = {month:datetemp2.getMonth()+1,day:datetemp2.getDate(),summary:weather.daily.data[2].summary,highTemp:weather.daily.data[2].temperatureMax,lowTemp:weather.daily.data[2].temperatureMin};
-    var dispDate2 = "<p>" + Date2.month + "-" + Date2.day + "</p>";
-    var dispDate2sum = "<p>" + Date2.summary + "</p>";
-    var dispDate2hightemp = "<p>" + parseInt(Date2.highTemp) + "</p>";
-    var dispDate2lowtemp = "<p>" + parseInt(Date2.lowTemp) + "</p>";
+    var dispDate2 = "<p>" + days[1].month + "-" + days[1].day + "</p>";
+    var dispDate2sum = "<p>" + days[1].summary + "</p>";
+    var dispDate2hightemp = "<p>" + days[1].highTemp + "</p>";
+    var dispDate2lowtemp = "<p>" + days[1].lowTemp + "</p>";
 
-    var Date3 = {month:datetemp3.getMonth()+1,day:datetemp3.getDate(),summary:weather.daily.data[3].summary,highTemp:weather.daily.data[3].temperatureMax,lowTemp:weather.daily.data[3].temperatureMin};
-    var dispDate3 = "<p>" + Date3.month + "-" + Date3.day + "</p>";
-    var dispDate3sum = "<p>" + Date3.summary + "</p>";
-    var dispDate3hightemp = "<p>" + parseInt(Date3.highTemp) + "</p>";
-    var dispDate3lowtemp = "<p>" + parseInt(Date3.lowTemp) + "</p>";
+    var dispDate3 = "<p>" + days[2].month + "-" + days[2].day + "</p>";
+    var dispDate3sum = "<p>" + days[2].summary + "</p>";
+    var dispDate3hightemp = "<p>" + days[2].highTemp + "</p>";
+    var dispDate3lowtemp = "<p>" + days[2].lowTemp + "</p>";
 
-    var Date4 = {month:datetemp4.getMonth()+1,day:datetemp4.getDate(),summary:weather.daily.data[4].summary,highTemp:weather.daily.data[4].temperatureMax,lowTemp:weather.daily.data[4].temperatureMin};
-    var dispDate4 = "<p>" + Date4.month + "-" + Date4.day + "</p>";
-    var dispDate4sum = "<p>" + Date4.summary + "</p>";
-    var dispDate4hightemp = "<p>" + parseInt(Date4.highTemp) + "</p>";
-    var dispDate4lowtemp = "<p>" + parseInt(Date4.lowTemp) + "</p>";
+    var dispDate4 = "<p>" + days[3].month + "-" + days[3].day + "</p>";
+    var dispDate4sum = "<p>" + days[3].summary + "</p>";
+    var dispDate4hightemp = "<p>" + days[3].highTemp + "</p>";
+    var dispDate4lowtemp = "<p>" + days[3].lowTemp + "</p>";
     //var ryan={location: {state:"Illinois", city:"Chicago"},name:"Ryan",vehicle:"bicycle",favNumbers: [12,3,24,4,0]}
     // End of your code. No, really. Don't change anything below this, or above line 11.
 
@@ -69,16 +75,16 @@ $(function() {
   }
 
   // The "glue" that makes it all work. Don't really worry about this for now.
-  $(window).load(function(event){
+//  $(window).load(function(event){
 //  $('a.get-the-weather').on('click', function(event) {
     //alert("pageload event fired!");
-    event.preventDefault();
-    $.ajax({
-      type: 'GET',
-      url: 'https://api.forecast.io/forecast/6dbe98374cc5b8f9ea63d5ec73de9c04/41.946428,-87.707409?callback=?',
-      dataType: 'jsonp',
-      contentType: "application/json",
-      success: handleWeatherResponse
-    });
+  event.preventDefault();
+  $.ajax({
+    type: 'GET',
+    url: 'https://api.forecast.io/forecast/6dbe98374cc5b8f9ea63d5ec73de9c04/41.946428,-87.707409?callback=?',
+    dataType: 'jsonp',
+    contentType: "application/json",
+    success: handleWeatherResponse
   });
+//  });
 });
