@@ -14,13 +14,26 @@ $(function() {
     // Let's get that data!
 
     var days = [];
+    var dayIcons = [];
 
     for (i=0; i<5; i++) {
   //    console.log(Math.round(weather.daily.data[i+1].temperatureMax));
       var datetemp = new Date(weather.daily.data[i+1].time*1000);
-      days[i] = {month:datetemp.getMonth()+1,day:datetemp.getDate(),summary:weather.daily.data[i+1].summary,highTemp:Math.round(weather.daily.data[i+1].temperatureMax),lowTemp:Math.round(weather.daily.data[i+1].temperatureMin)};
-//      console.log(days[i]);
+      days[i] = {month:datetemp.getMonth()+1,day:datetemp.getDate(),summary:weather.daily.data[i+1].summary,highTemp:Math.round(weather.daily.data[i+1].temperatureMax),lowTemp:Math.round(weather.daily.data[i+1].temperatureMin),icon:weather.daily.data[i].icon};
+      console.log(days[i].icon);
+
+  /*    switch(days[i].icon) {
+        case "rain":
+          days[i].iconUrl=0;//"<img src="rain.png">";
+          break;
+        case default:
+          days[i].iconUrl=10;//"<img src="rain.png">";
+          break;
+        }
+      }*/
 	  }
+
+
 
     // Put your code here. Don't change any other code in this file. You will be sad.
     var CurTemp = "<p>Currently " + Math.round(weather.currently.temperature) + " &#8457 / " + Math.round((weather.currently.temperature -32)*5/9) + " &#8451</p>";// + city + ", " + state + "</p>";
@@ -53,6 +66,7 @@ $(function() {
     $('.weather-temp').html(CurTemp);
     $('.weather-hum').html(CurHum);
 
+    $('.icon-one').html(days[1].iconUrl);
     $('.date-one').html(dispDate1);
     $('.summary-one').html(dispDate1sum);
     $('.hightemp-one').html(dispDate1hightemp);
