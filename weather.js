@@ -31,7 +31,7 @@ $(function() {
 
     // Put your code here. Don't change any other code in this file. You will be sad.
     var CurTemp = "<p>Currently " + Math.round(weather.currently.temperature) + " &#8457 / " + Math.round((weather.currently.temperature -32)*5/9) + " &#8451</p>";// + city + ", " + state + "</p>";
-    var CurHum = "<p>" + weather.currently.summary + " with "+ (weather.currently.humidity)*100 + " % Humidity</p>";
+    var CurHum = "<p>" + weather.currently.summary + " with "+ Math.round((weather.currently.humidity)*100) + " % Humidity</p>";
 
     var dispDate1 = "<p>" + days[0].month + "-" + days[0].day + "</p>";
     var dispDate1sum = "<p>" + days[0].summary + "</p>";
